@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<div id="show" style="height:500px;width:600px; transform: translateX(-50%) translateY(10%);position:absolute;left:50%" >
+
+</div>
+<div id="abc" style="text-align: center;">
+
+</div>
+<div style="text-align: center;">
+    radian:
+    <input id="in" type="number">
+    <button onclick="set()">set</button>
+</div>
+<script>
+
+    //var l = 100;
+    var x 
+    var y 
+    var l = 100;
+    var angle = 1;
+    var a = 0;
+    var v = 0;
+    var g = 98;
+    var xfix = 300;
+    var yfix = -30;
+    var dt = 0.002;
+    var now = 0;
+    setInterval("next10()", 1);
+    function next10()
+    {
+        next();
+        next();
+        next();
+        next();
+        next();
+        next();
+        next();
+        next();
+        next();
+        next();
+    }
+    function next() {
+       {
+           a= - g / l * Math.sin(angle);
+           v=v+a*dt;
+           angle=angle+v*dt;
+           now=now+dt;
+           x=Math.sin(angle)*l+xfix;
+           y=yfix-Math.cos(angle)*l;
+       }
+        view();
+    }
+
+    function view() {
+        document.getElementById("show").innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" height=\"500\" width=\"600\"><circle cx=\"" + x + "\" cy=\"" + (-y) + "\" r=\"5\" stroke=\"black\"stroke-width=\"2\" fill=\"red\"/><circle cx=\"" + xfix + "\" cy=\"" + (-yfix) + "\" r=\"2\" stroke=\"black\"stroke-width=\"2\" fill=\"red\"/><line x1=\""+xfix+"\"y1=\""+(-yfix)+"\" x2=\""+x+"\" y2=\""+(-y)+"\"style=\"stroke:rgb(255,0,0);stroke-width:1\"/></svg>"
+        document.getElementById("abc").innerHTML ="t="+now.toFixed(2)+",angle="+angle.toFixed(5);
+
+    }
+    function set()
+    {
+        angle=document.getElementById("in").valueAsNumber;
+        a=0;
+        now=0;
+        v=0;
+    }
+</script>
