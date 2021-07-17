@@ -4,7 +4,7 @@
 <div id="show" style="height:500px;width:600px; transform: translateX(-50%) translateY(10%);position:absolute;left:50%">
 
 </div>
-<div id="abc" style="text-align: center;">
+<div id="abc" style="text-align: center;white-space: pre-line">
 
 </div>
 <div style="text-align: center;">
@@ -30,18 +30,14 @@
     x = Math.sin(angle) * l + xfix;
     y = yfix - Math.cos(angle) * l;
     var path = x + "," + (-y) + " ";
-    setInterval("next10()", 1);
-    function next10() {
+    setInterval("next5()", 1);
+    function next5() {
         next();
         next();
         next();
         next();
         next();
-        next();
-        next();
-        next();
-        next();
-        next();
+        path = path + " " + x + "," + (-y);
     }
     function next() {
         {
@@ -51,14 +47,13 @@
             now = now + dt;
             x = Math.sin(angle) * l + xfix;
             y = yfix - Math.cos(angle) * l;
-            path = path + " " + x + "," + (-y);
         }
         view();
     }
 
     function view() {
         document.getElementById("show").innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" height=\"500\" width=\"600\"><polyline points=\"" + path + "\"style=\"fill:none;stroke:black;stroke-width:1\" /><circle cx=\"" + x + "\" cy=\"" + (-y) + "\" r=\"5\" stroke=\"black\"stroke-width=\"1\" fill=\"red\"/><circle cx=\"" + xfix + "\" cy=\"" + (-yfix) + "\" r=\"2\" stroke=\"black\"stroke-width=\"1\" fill=\"red\"/><line x1=\"" + xfix + "\"y1=\"" + (-yfix) + "\" x2=\"" + x + "\" y2=\"" + (-y) + "\"style=\"stroke:rgb(255,0,0);stroke-width:1\"/></svg>"
-        document.getElementById("abc").innerHTML = "t=" + now.toFixed(2) + ",angle=" + angle.toFixed(5)+".t is the time of pendulum,not the real time.";
+        document.getElementById("abc").innerHTML = "t=" + now.toFixed(2) + ",angle=" + angle.toFixed(5)+",ω="+v.toFixed(3)+"\nt is the time of pendulum,not the real time.";
 
     }
     function set() {
